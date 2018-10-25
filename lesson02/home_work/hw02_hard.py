@@ -1,10 +1,31 @@
+__author__ = 'Павел Новиков (aka Paul VokiVon)'
 # Задание-1: уравнение прямой вида y = kx + b задано в виде строки.
 # Определить координату y точки с заданной координатой x.
 
 equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
+print("---------- Задача 1 ----------")
 
+str_arr = equation.split();
+b = float(str_arr[-1])
+k = 0
+plus = True
+for arg in str_arr:
+    if 'x' in arg:
+        k = float(arg.split('x')[0])
+    if len(arg) == 1 and '-' in arg:
+        plus = False
+y = k * x
+if plus:
+    y += b
+else:
+    y -= b
+
+print(equation)
+print(str_arr)
+print(f"Для х = 2.5 y = {y}")
+print()
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
@@ -17,13 +38,85 @@ x = 2.5
 #  (т.е. 2 символа для дня, 2 - для месяца, 4 - для года)
 
 # Пример корректной даты
-date = '01.11.1985'
 
 # Примеры некорректных дат
-date = '01.22.1001'
-date = '1.12.1001'
-date = '-2.10.3001'
+# bdate1 = '01.22.1001'
+# bdate2 = '1.12.1001'
+# bdate3 = '-2.10.3001'
 
+print("---------- Задача 2 ----------")
+"""
+Можно пойти простым путем и разделив строку, преобразовать все к инту, и если что не так,
+обрабатывать исключения. Но мы исключения еще не проходили, поэтому пойдем северным морским путем
+и будем все разбирать посимвольно ))
+"""
+arr_0_1 = ['0', '1']
+arr_0_2 = [str(i) for i in range(0, 3)]
+arr_0_3 = [str(i) for i in range(0, 4)]
+arr_0_9 = [str(i) for i in range(0, 10)]
+month_31 = {1, 3, 5, 7, 10, 12}
+
+date = input('Введите плз дату в формате dd.mm.yyyy : ')
+
+in_date = date
+arr_date = in_date.split('.')
+# разбираем дату на части
+str_date, str_month, str_year = arr_date
+
+# проверяем год
+year_good = True
+if len(str_year) == 4:
+    for i in str_year:
+        if i not in arr_0_9:
+            year_good = False
+            break
+    if year_good:
+        if not (int(str_year) > 1 and int(str_year) <= 9999):
+            year_good = False
+else:
+    year_good = False
+
+if year_good:
+    print(f"Год корректен: {str_year}")
+else:
+    print(f"Год НЕ корректен: {str_year}")
+
+# проверяем месяц
+month_good = True
+if len(str_month) == 2:
+    if str_month[0] not in arr_0_1 or str_month[1] not in arr_0_2:
+        month_good = False
+else:
+    month_good = False
+
+if month_good:
+    print(f"Месяц корректен: {str_month}")
+else:
+    print(f"Месяц НЕ корректен: {str_month}")
+
+# проверяем дату
+day_good = True
+if len(str_date) == 2:
+    if str_date[0] not in arr_0_3 or str_date[1] not in arr_0_9:
+        day_good = False
+    # проверяем на кол-во дней в зависимости от месяца
+    if day_good:
+        n = 30
+        if month_good and int(str_month) in month_31:
+            n = 31
+        if not (int(str_date) >= 1 and int(str_date) <= n):
+            day_good = False
+
+else:
+    day_good = False
+
+if day_good:
+    print(f"День корректен: {str_date}")
+else:
+    print(f"День НЕ корректен: {str_date}")
+
+if year_good and month_good and day_good:
+    print(f"Благодарю вас. Вы введи корректную дату : {date}")
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
