@@ -1,5 +1,4 @@
 __author__ = 'Павел Новиков (aka Paul VokiVon)'
-
 # Задание-1:
 # Матрицы в питоне реализуются в виде вложенных списков:
 # Пример. Дано:
@@ -17,7 +16,10 @@ matrix = [[1, 0, 8],
 # Суть сложности hard: Решите задачу в одну строку
 print("---------- Задача 1 ----------")
 matrix_out = [[matrix[i.index(r)][matrix.index(i)] for r in i] for i in matrix]
+print(matrix)
 print(matrix_out)
+print()
+
 
 
 # Задание-2:
@@ -46,6 +48,23 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+print("---------- Задача 2 ----------")
+num_list = []
+numsrc = number.replace('\n', '')
+k = 0
+while k+5 <= len(numsrc):
+    nline = numsrc[k:k+5]
+    mn = 1
+    for i in nline:
+        mn *= int(i)
+    num_list.append(mn)
+    k += 1
+# print(num_list)
+val_max = max(num_list)
+idx = num_list.index(val_max)
+nline = numsrc[idx:idx+5]
+print(f"MAX = {val_max}\nSHIFT = {idx}\nLINE = {nline} ")
+print(numsrc[idx:])
 
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
