@@ -1,3 +1,6 @@
+__author__ = 'Павел Новиков (aka Paul VokiVon)'
+
+import re
 # Задание-1:
 # Вывести символы в нижнем регистре, которые находятся вокруг
 # 1 или более символов в верхнем регистре.
@@ -19,6 +22,27 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'qHFjvihuNGEEFsfnMXTfptvIOlhKhyYwxLnqOsBdGvnuyEZIheApQGOXWeXoLWiDQNJFa'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
+print("---------- Задача 1 ----------")
+print("---------- способ с re ----------")
+result = re.findall(r'([^A-Z]+)', line)
+print(result)
+print()
+
+print("---------- способ с массивом заглавных букв ----------")
+sep_list = list(map(chr, range(ord('A'), ord('Z')+1)))
+# print(sep_list)
+temp = line
+for i in sep_list:
+    temp = temp.replace(i, ' ')
+print(temp.split())
+print()
+
+print("---------- способ с проходом по строке ----------")
+temp = []
+for i in line:
+    temp.append(i if not i.isupper() else ' ')
+
+print("".join(temp).split())
 
 
 # Задание-2:
