@@ -29,11 +29,11 @@ def make_dir(dir_name):
 # Удаление директории
 def del_dir(dir_name):
     dir_path = os.path.join(os.getcwd(), dir_name)
-    print(f"Удаляем директорию {dir_path}")
     try:
         os.rmdir(dir_path)
+        print(f"Удалена директория {dir_path}")
     except FileExistsError:
-        print('Такой директории не существует')
+        print(f"Ошибка удаления : Директории {dir_path} не существует")
 
 
 for i in range(10):
