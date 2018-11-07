@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import random
+
 """
 == Лото ==
 
@@ -57,3 +59,29 @@
 модуль random: http://docs.python.org/3/library/random.html
 
 """
+
+class Bag:
+    """
+    Класс для Мешка с бочонками
+    """
+    __i_turn = 0
+    __kegs = list()
+
+    def __init__(self):
+        self.__kegs = [i for i in range(1, 91)]
+
+    def next_turn(self):
+        if __i_turn <= 90:
+            k = len(self.__kegs)
+            i = random.randint(0, k-1)
+            res = self.__kegs.pop(i)
+            self.__i_turn += 1
+            # print(f"i={i} \tk={k} \tres={res} \tturn={self.__i_turn}")
+            return res
+        else
+            return -1
+
+bg = Bag()
+for i in range(1, 91):
+    bg.next_turn()
+
